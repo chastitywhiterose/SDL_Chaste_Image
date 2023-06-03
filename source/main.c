@@ -40,11 +40,11 @@ int main(int argc, char **argv)
  else
  {
   printf("Enter a bitmap file as an argument to load it.\n");
-  /*return 0;*/
+  return 0;
  }
 
  /*test by using hard coded bitmap file*/
- strcpy(filename,"./bitmap/Chastity_Progress_Flag.png");
+ /*strcpy(filename,"./bitmap/Chastity_Progress_Flag.png");*/
 
  printf("opening filename: %s\n",filename);
 
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
   }
  }
 
- if(1){IMG_SavePNG(surface,"output.png");}
+ if(0){IMG_SavePNG(surface,"output.png");}
 
  /*free memory of bitmap now that we are done with it*/
  SDL_FreeSurface(bitmap);
