@@ -63,9 +63,10 @@ int main(int argc, char **argv)
  {
   printf("No bitmap was given as argument. Attempting to create blank image.\n");
   bitmap=SDL_CreateRGBSurfaceWithFormat(0,1280,720,32,SDL_PIXELFORMAT_BGRA32);
+  SDL_FillRect(bitmap,NULL,0xFF000000);
   strcpy(filename,"Help Page");
 
-  printf("Enter file as command line to display it.\nExample:\n\n%s ./bitmap/Chastity_Progress_Flag.png",argv[0]);
+  printf("Enter file as command line to display it.\nExample:\n\n%s ./bitmap/Chastity_Progress_Flag.png\n\n",argv[0]);
  }
 
  if(bitmap==NULL)
@@ -90,22 +91,22 @@ int main(int argc, char **argv)
  font_8=chaste_font_load("./font/FreeBASIC Font 8.bmp");
  main_font=font_8;
 
- SDL_FillRect(bitmap,NULL,0xFF000000);
+
 
  SDL_BlitSurface(bitmap,NULL,surface,NULL);
 
  
-
+if(argc==1)
+{
  chaste_font_draw_string("SDL Chaste Image written by Chastity White Rose",10,10);
-/*
- chaste_font_draw_string_scaled("text",10,100,8);
 
- chaste_font_draw_string_scaled_color("text",10,200,8,0xFF);
-*/
+ chaste_font_draw_string_scaled("Progress Flag sample image designed by Chastity\nafter looking at similar images",64,500,2);
+
+
  sprintf(text,"Enter file as command line to display it.\nExample:\n\n%s ./bitmap/Chastity_Progress_Flag.png",argv[0]);
 
  chaste_font_draw_string_scaled_color(text,64,300,3,0xFFFFFF);
-
+}
 
  SDL_UpdateWindowSurface(window);
 
