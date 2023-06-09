@@ -25,8 +25,17 @@ int main(int argc, char **argv)
 {
  int x;
 
+ if(SDL_Init(SDL_INIT_VIDEO))
+ {
+  printf( "SDL could not initialize! SDL_Error: %s\n",SDL_GetError());return -1;
+ }
+
+ x=IMG_Init(IMG_INIT_PNG);
+ printf("IMG_Init: %d\n",x);
+
 /*process command line arguments*/
 
+ /*printf("argc=%i\n",argc);*/
  x=0;
  while(x<argc)
  {
@@ -37,7 +46,6 @@ int main(int argc, char **argv)
  /*if a command line argument is provided, open that file*/
  if(argc>1)
  {
-  printf("argc=%i\n",argc);
   strcpy(filename,argv[1]);
 
  /*test by using hard coded bitmap file*/
@@ -45,7 +53,7 @@ int main(int argc, char **argv)
 
  printf("opening filename: %s\n",filename);
 
- /*IMG_Init(IMG_INIT_PNG);*/
+
 
  bitmap_temp=IMG_Load(filename);
 
@@ -130,6 +138,7 @@ if(argc==1)
  SDL_FreeSurface(font_8.surface);
  SDL_FreeSurface(bitmap);
  SDL_DestroyWindow(window);
+ IMG_Quit();
  SDL_Quit();
 
  return 0;
